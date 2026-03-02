@@ -1,0 +1,139 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: personal-website
+  thymeleaf:
+    cache: false          # Disable cache for development (set to true in production)
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+
+# ============================================
+# PERSONAL INFO CONFIGURATION
+# Edit the values below to customize your site
+# ============================================
+site:
+  owner:
+    name: "Your Name"
+    title: "Software Developer"
+    tagline: "Passionate about building great software"
+    bio: >
+      Hello! I'm a software developer who loves creating elegant solutions
+      to complex problems. I specialize in Java and web technologies.
+      Welcome to my personal space on the internet.
+    email: "your.email@example.com"
+    location: "San Francisco, CA"
+    avatar: "/images/avatar.png"
+
+  social:
+    github: "https://github.com/yourusername"
+    linkedin: "https://linkedin.com/in/yourusername"
+    twitter: "https://twitter.com/yourusername"
+    instagram: "https://instagram.com/yourusername"
+
+  # Add your skills here (name + percentage proficiency)
+  skills:
+    - name: "Java"
+      level: 90
+    - name: "Spring Boot"
+      level: 85
+    - name: "JavaScript"
+      level: 75
+    - name: "HTML/CSS"
+      level: 80
+    - name: "SQL"
+      level: 70
+    - name: "Docker"
+      level: 65
+
+  # Add your projects here
+  projects:
+    - name: "Project Alpha"
+      description: "A brief description of your awesome project."
+      techStack: "Java, Spring Boot, PostgreSQL"
+      repoUrl: "https://github.com/yourusername/project-alpha"
+      liveUrl: ""
+      featured: true
+    - name: "Project Beta"
+      description: "Another cool project you've worked on."
+      techStack: "Python, Flask, Redis"
+      repoUrl: "https://github.com/yourusername/project-beta"
+      liveUrl: ""
+      featured: true
+    - name: "Project Gamma"
+      description: "Yet another project worth showcasing."
+      techStack: "React, Node.js, MongoDB"
+      repoUrl: "https://github.com/yourusername/project-gamma"
+      liveUrl: ""
+      featured: false
+
+  # Add your experience / timeline entries
+  experience:
+    - role: "Software Engineer"
+      company: "Awesome Corp"
+      period: "2023 - Present"
+      description: "Working on distributed systems and microservices."
+    - role: "Junior Developer"
+      company: "Startup Inc"
+      period: "2021 - 2023"
+      description: "Full-stack development with Java and React."
+    - role: "CS Degree"
+      company: "University of Technology"
+      period: "2017 - 2021"
+      description: "Bachelor of Science in Computer Science."
+
+  # ============================================
+  # PHOTOGRAPHY / GALLERY
+  # Add your photo albums below
+  # ============================================
+  gallery:
+    - name: "New York City"
+      slug: "new-york"
+      emoji: "\uD83C\uDDFA\uD83C\uDDF8"
+      coverImage: "/images/gallery/new-york/cover.jpg"
+      description: "Exploring the streets and skylines of NYC"
+      photos:
+        - src: "/images/gallery/new-york/photo1.jpg"
+          caption: "Manhattan Skyline"
+          date: "2024-01"
+        - src: "/images/gallery/new-york/photo2.jpg"
+          caption: "Central Park"
+          date: "2024-01"
+        - src: "/images/gallery/new-york/photo3.jpg"
+          caption: "Brooklyn Bridge at Sunset"
+          date: "2024-01"
+
+    - name: "San Francisco"
+      slug: "san-francisco"
+      emoji: "\uD83C\uDF09"
+      coverImage: "/images/gallery/san-francisco/cover.jpg"
+      description: "Golden Gate, cable cars, and fog"
+      photos:
+        - src: "/images/gallery/san-francisco/photo1.jpg"
+          caption: "Golden Gate Bridge"
+          date: "2024-02"
+        - src: "/images/gallery/san-francisco/photo2.jpg"
+          caption: "Fisherman's Wharf"
+          date: "2024-02"
+
+    - name: "Travel Adventures"
+      slug: "travel"
+      emoji: "\u2708\uFE0F"
+      coverImage: "/images/gallery/travel/cover.jpg"
+      description: "Moments captured around the world"
+      photos:
+        - src: "/images/gallery/travel/photo1.jpg"
+          caption: "Beautiful Sunrise"
+          date: "2024-03"
+
+    - name: "Daily Life"
+      slug: "daily"
+      emoji: "\uD83C\uDF38"
+      coverImage: "/images/gallery/daily/cover.jpg"
+      description: "Little moments that make life sweet"
+      photos:
+        - src: "/images/gallery/daily/photo1.jpg"
+          caption: "Coffee & Code"
+          date: "2024-03"

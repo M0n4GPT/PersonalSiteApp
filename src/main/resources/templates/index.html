@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title th:text="${owner.name} + ' — Personal Website'">Personal Website</title>
+    <meta name="description" th:content="${owner.tagline}"/>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<!-- ===================== NAVIGATION ===================== -->
+<nav id="navbar">
+    <div class="nav-container">
+        <a href="#" class="nav-logo" th:text="${owner.name}">Your Name</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#photography">Photography</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#" class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">🌙</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ===================== HERO SECTION ===================== -->
+<header id="hero">
+    <div class="hero-content">
+        <div class="hero-avatar">
+            <img th:src="@{${owner.avatar}}" alt="Avatar" onerror="this.style.display='none'"/>
+            <div class="avatar-fallback" th:text="${#strings.substring(owner.name, 0, 1)}">Y</div>
+        </div>
+        <h1 th:text="${owner.name}">Your Name</h1>
+        <p class="hero-title" th:text="${owner.title}">Software Developer</p>
+        <p class="hero-tagline" th:text="${owner.tagline}">Passionate about building great software</p>
+        <div class="hero-social">
+            <a th:if="${social.github}" th:href="${social.github}" target="_blank" rel="noopener" class="social-link" title="GitHub">
+                <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+            </a>
+            <a th:if="${social.linkedin}" th:href="${social.linkedin}" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+                <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a th:if="${social.twitter}" th:href="${social.twitter}" target="_blank" rel="noopener" class="social-link" title="Twitter / X">
+                <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+        </div>
+        <a href="#about" class="scroll-indicator" aria-label="Scroll down">
+            <svg width="30" height="30" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+        </a>
+    </div>
+</header>
+
+<!-- ===================== ABOUT SECTION ===================== -->
+<section id="about" class="section">
+    <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p th:text="${owner.bio}">Bio goes here...</p>
+            </div>
+            <div class="about-info">
+                <div class="info-item">
+                    <span class="info-icon">📍</span>
+                    <span th:text="${owner.location}">Location</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">💼</span>
+                    <span th:text="${owner.title}">Title</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">✉️</span>
+                    <a th:href="'mailto:' + ${owner.email}" th:text="${owner.email}">email</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== SKILLS SECTION ===================== -->
+<section id="skills" class="section section-alt">
+    <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card" th:each="skill : ${skills}">
+                <div class="skill-header">
+                    <span class="skill-name" th:text="${skill.name}">Skill</span>
+                    <span class="skill-percent" th:text="${skill.level} + '%'">90%</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-fill" th:style="'width:' + ${skill.level} + '%'" th:data-level="${skill.level}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== PROJECTS SECTION ===================== -->
+<section id="projects" class="section">
+    <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card" th:each="project : ${projects}" th:classappend="${project.featured} ? ' featured' : ''">
+                <div class="project-header">
+                    <svg class="project-icon" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3 3h7v7H3zm0 11h7v7H3zm11-11h7v7h-7zm0 11h7v7h-7z" opacity=".6"/></svg>
+                    <div class="project-links">
+                        <a th:if="${project.repoUrl != null and !project.repoUrl.isEmpty()}" th:href="${project.repoUrl}" target="_blank" rel="noopener" title="Source Code">
+                            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+                        </a>
+                        <a th:if="${project.liveUrl != null and !project.liveUrl.isEmpty()}" th:href="${project.liveUrl}" target="_blank" rel="noopener" title="Live Demo">
+                            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L20.2 3.8"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <h3 class="project-name" th:text="${project.name}">Project Name</h3>
+                <p class="project-desc" th:text="${project.description}">Description</p>
+                <div class="project-tech">
+                    <span class="tech-tag" th:each="tech : ${#strings.arraySplit(project.techStack, ',')}" th:text="${#strings.trim(tech)}">Tech</span>
+                </div>
+                <span class="featured-badge" th:if="${project.featured}">★ Featured</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== PHOTOGRAPHY SECTION ===================== -->
+<section id="photography" class="section">
+    <div class="container">
+        <h2 class="section-title">Photography 📸</h2>
+        <p class="section-subtitle">I love capturing beautiful moments through my lens. Here are some of my favorite collections!</p>
+        <div class="photo-albums-grid">
+            <a th:each="album : ${albums}" th:href="@{'/gallery/' + ${album.slug}}" class="album-card">
+                <div class="album-cover">
+                    <img th:src="@{${album.coverImage}}" th:alt="${album.name}" onerror="this.style.display='none'"/>
+                    <div class="album-cover-fallback" th:text="${album.emoji}">📷</div>
+                </div>
+                <div class="album-info">
+                    <span class="album-emoji" th:text="${album.emoji}">📷</span>
+                    <h3 th:text="${album.name}">Album</h3>
+                    <p th:text="${album.description}">Description</p>
+                    <span class="album-count" th:text="${#lists.size(album.photos)} + ' photos'">0 photos</span>
+                </div>
+            </a>
+        </div>
+        <div class="section-cta">
+            <a href="/gallery" class="btn-primary">View Full Gallery →</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== EXPERIENCE SECTION ===================== -->
+<section id="experience" class="section section-alt">
+    <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item" th:each="exp : ${experience}">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3 th:text="${exp.role}">Role</h3>
+                    <span class="timeline-company" th:text="${exp.company}">Company</span>
+                    <span class="timeline-period" th:text="${exp.period}">Period</span>
+                    <p th:text="${exp.description}">Description</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== CONTACT SECTION ===================== -->
+<section id="contact" class="section">
+    <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-content">
+            <p>I'm always open to new opportunities, collaborations, or just a friendly chat. Feel free to reach out!</p>
+            <a th:href="'mailto:' + ${owner.email}" class="btn-primary">Say Hello 👋</a>
+            <div class="contact-social">
+                <a th:if="${social.github}" th:href="${social.github}" target="_blank" rel="noopener" class="social-link" title="GitHub">
+                    <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+                </a>
+                <a th:if="${social.linkedin}" th:href="${social.linkedin}" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+                    <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a th:if="${social.twitter}" th:href="${social.twitter}" target="_blank" rel="noopener" class="social-link" title="Twitter / X">
+                    <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+    <div class="container">
+        <p>&copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2026</span> <span th:text="${owner.name}">Your Name</span>. Built with Spring Boot &amp; Thymeleaf.</p>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

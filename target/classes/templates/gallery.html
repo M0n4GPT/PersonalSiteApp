@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title th:text="${owner.name} + ' · Photo Gallery ✨'">Photo Gallery</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<!-- Floating decorative elements -->
+<div class="floating-decor">
+    <span class="float-item" style="top:15%;left:4%;animation-delay:0s;">📸</span>
+    <span class="float-item" style="top:30%;right:6%;animation-delay:2s;">🌸</span>
+    <span class="float-item" style="top:60%;left:5%;animation-delay:1s;">✨</span>
+    <span class="float-item" style="top:80%;right:4%;animation-delay:3s;">🎞️</span>
+</div>
+
+<!-- ===================== NAVIGATION ===================== -->
+<nav id="navbar">
+    <div class="nav-container">
+        <a th:href="@{/}" class="nav-logo">
+            <span class="logo-emoji">🌸</span>
+            <span th:text="${owner.name}">Your Name</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/gallery}" class="active">Gallery</a></li>
+            <li><a href="#" class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">🌙</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ===================== GALLERY HEADER ===================== -->
+<section class="page-header">
+    <div class="container">
+        <h1>📸 Photo Gallery</h1>
+        <p>A collection of moments captured through my lens</p>
+    </div>
+</section>
+
+<!-- ===================== ALBUMS GRID ===================== -->
+<section class="section">
+    <div class="container">
+        <div class="gallery-albums-grid">
+            <a th:each="album : ${albums}" th:href="@{'/gallery/' + ${album.slug}}" class="album-card-large">
+                <div class="album-cover-large">
+                    <img th:src="@{${album.coverImage}}" th:alt="${album.name}" onerror="this.parentElement.classList.add('no-image')"/>
+                    <div class="album-cover-fallback-large">
+                        <span th:text="${album.emoji}">📷</span>
+                    </div>
+                    <div class="album-overlay">
+                        <span class="album-overlay-emoji" th:text="${album.emoji}">📷</span>
+                        <h2 th:text="${album.name}">Album Name</h2>
+                        <p th:text="${album.description}">Description</p>
+                        <span class="album-photo-count" th:text="${#lists.size(album.photos)} + ' photos'">3 photos</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+    <div class="container">
+        <p>Made with 💕 by <span th:text="${owner.name}">Your Name</span> · <a th:href="@{/}">Back to Home</a></p>
+    </div>
+</footer>
+
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>
